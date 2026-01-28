@@ -1,12 +1,20 @@
 pipeline {
-    agent {
-        dockerfile true
+    agent any
+
+    environment {
+        PORT = '9000'
     }
 
     stages {
-        stage("deploy") {
+        stage("build") {
             steps {
-                sh 'go version'
+                sh 'docker build -t burnaev-go-back .'
+            }
+        }
+
+        stage("run") {
+            steps {
+                sh 'docker run -p ${env.PORT}:8080 burnaev-go-back'
             }
         }
     }
