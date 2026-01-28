@@ -14,7 +14,7 @@ pipeline {
 
         stage("run") {
             steps {
-                sh 'docker run -p ${PORT}:8080 burnaev-go-back'
+                sh 'docker run -d -p ${PORT}:8080 burnaev-go-back'
             }
         }
     }
