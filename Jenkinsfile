@@ -1,16 +1,12 @@
 pipeline {
-    agent any
+    agent {
+        dockerfile true
+    }
 
     stages {
-        stage("build") {
-            agent {
-                docker {
-                    image 'golang:tip-alpine3.23'
-                    args '-u root'
-                }
-            }
+        stage("deploy") {
             steps {
-                sh 'go build .'
+                sh 'go version'
             }
         }
     }
